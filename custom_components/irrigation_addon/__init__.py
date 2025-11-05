@@ -48,6 +48,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await _async_register_services(hass, coordinator)
     
     # Register web panel
+    _LOGGER.debug("Attempting to register irrigation panel...")
     await _async_register_panel(hass)
     
     _LOGGER.info("Irrigation Addon integration setup complete")
@@ -112,15 +113,25 @@ def _async_remove_services(hass: HomeAssistant) -> None:
 
 async def _async_register_panel(hass: HomeAssistant) -> None:
     """Register the web panel."""
+    import os
+    
     try:
-        # Register static files
+        # Check if panel files exist
+        www_path = hass.config.path(f"custom_components/{DOMAIN}/www")
+        html_file = os.path.join(www_path, "irrigation-panel.html")
+        
+        _LOGGER.debug(f"Checking for panel files at: {www_path}")
+        _LOGGER.debug(f"HTML file exists: {os.path.exists(html_file)}")
+        
+        # Register static files for the web panel
         hass.http.register_static_path(
             f"/api/{DOMAIN}/www",
-            hass.config.path(f"custom_components/{DOMAIN}/www"),
+            www_path,
             cache_headers=False,
         )
+        _LOGGER.debug("Static path registered successfully")
         
-        # Register the custom panel
+        # Register the irrigation panel in the sidebar using the correct method
         hass.components.frontend.async_register_built_in_panel(
             component_name="iframe",
             sidebar_title="Irrigation",
@@ -132,10 +143,35 @@ async def _async_register_panel(hass: HomeAssistant) -> None:
             require_admin=False,
         )
         
-        _LOGGER.info("Irrigation panel registered successfully")
+        _LOGGER.info("Irrigation panel registered successfully in sidebar")
         
     except Exception as e:
         _LOGGER.error("Failed to register irrigation panel: %s", e)
+        # Try alternative registration method for older HA versions
+        try:
+            hass.components.frontend.async_register_built_in_panel(
+                "iframe",
+                "Irrigation",
+                "mdi:sprinkler-variant",
+                "irrigation",
+                {"url": f"/api/{DOMAIN}/www/irrigation-panel.html"},
+                require_admin=False,
+            )
+            _LOGGER.info("Irrigation panel registered with alternative method")
+        except Exception as e2:
+            _LOGGER.error("Alternative panel registration also failed: %s", e2)
+            # Final fallback - try the simplest registration
+            try:
+                hass.components.frontend.async_register_built_in_panel(
+                    "iframe",
+                    "Irrigation",
+                    "mdi:sprinkler-variant",
+                    "irrigation",
+                    {"url": f"/api/{DOMAIN}/www/irrigation-panel.html"}
+                )
+                _LOGGER.info("Irrigation panel registered with simple method")
+            except Exception as e3:
+                _LOGGER.error("All panel registration methods failed: %s", e3)
 
 
 def _async_remove_panel(hass: HomeAssistant) -> None:
