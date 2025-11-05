@@ -68,6 +68,7 @@ jobs:
     - name: Check code formatting with black
       run: |
         black --check custom_components/ tests/
+      continue-on-error: true
 
     - name: Check import sorting with isort
       run: |

@@ -5,7 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/mediflowernz/ha-irrigation-addon.svg)](https://github.com/mediflowernz/ha-irrigation-addon/releases)
 
-A comprehensive Home Assistant irrigation addon designed specifically for professional cannabis cultivation. This integration provides automated irrigation control with advanced scheduling, real-time monitoring, and fail-safe mechanisms across multiple growing rooms.
+A comprehensive **Home Assistant Custom Integration** designed specifically for professional cannabis cultivation. This integration provides automated irrigation control with advanced scheduling, real-time monitoring, and fail-safe mechanisms across multiple growing rooms.
+
+> **⚠️ Important**: This is a **Custom Integration**, not a Home Assistant Add-on. Install via HACS or manual installation.
 
 ## Features
 
@@ -36,6 +38,26 @@ A comprehensive Home Assistant irrigation addon designed specifically for profes
 - Light schedule integration prevents irrigation during lights-off
 - Over-watering prevention with daily limits
 - Entity availability checks before activation
+
+## 📦 Installation
+
+### HACS (Recommended)
+1. Install [HACS](https://hacs.xyz/) if not already installed
+2. Go to HACS → Integrations
+3. Click the three dots → Custom repositories
+4. Add: `https://github.com/mediflowernz/ha-irrigation-addon`
+5. Category: Integration
+6. Install "Irrigation Addon"
+7. Restart Home Assistant
+8. Add integration via Settings → Devices & Services
+
+### Manual Installation
+1. Download from [releases](https://github.com/mediflowernz/ha-irrigation-addon/releases)
+2. Copy `custom_components/irrigation_addon/` to your HA config directory
+3. Restart Home Assistant
+4. Add integration via Settings → Devices & Services
+
+> **📖 Detailed Guide**: See [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md) for complete instructions
 - Comprehensive error handling and recovery
 
 ### 🎨 Professional Interface
