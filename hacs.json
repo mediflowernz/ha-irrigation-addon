@@ -1,8 +1,6 @@
 {
   "name": "Irrigation Addon",
   "hacs": "1.6.0",
-  "domains": ["irrigation_addon"],
-  "iot_class": "Local Polling",
   "homeassistant": "2023.1.0",
   "render_readme": true,
   "zip_release": true,
