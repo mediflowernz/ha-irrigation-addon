@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irrigation Control Panel</title>
+    <link rel="stylesheet" href="irrigation-panel.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading State -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Loading Irrigation System...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-screen" class="error-screen hidden">
+            <div class="error-icon">⚠️</div>
+            <h2>Connection Error</h2>
+            <p id="error-message">Unable to connect to the irrigation system.</p>
+            <button id="retry-button" class="btn btn-primary">Retry Connection</button>
+        </div>
+
+        <!-- Main Application -->
+        <div id="main-app" class="main-app hidden">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <h1 class="app-title">
+                        <span class="icon">🌱</span>
+                        Irrigation Control Panel
+                    </h1>
+                    <div class="header-actions">
+                        <button id="emergency-stop" class="btn btn-danger emergency-btn">
+                            <span class="icon">🛑</span>
+                            Emergency Stop
+                        </button>
+                        <button id="settings-btn" class="btn btn-secondary">
+                            <span class="icon">⚙️</span>
+                            Settings
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navigation -->
+            <nav class="app-nav">
+                <div class="nav-content">
+                    <button class="nav-btn active" data-view="dashboard">
+                        <span class="icon">🏠</span>
+                        Dashboard
+                    </button>
+                    <button class="nav-btn" data-view="events">
+                        <span class="icon">📅</span>
+                        Events
+                    </button>
+                    <button class="nav-btn" data-view="history">
+                        <span class="icon">📊</span>
+                        History
+                    </button>
+                    <button class="nav-btn" data-view="settings">
+                        <span class="icon">⚙️</span>
+                        Settings
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="app-main">
+                <!-- Dashboard View -->
+                <div id="dashboard-view" class="view active">
+                    <div class="view-header">
+                        <h2>Room Overview</h2>
+                        <div class="system-status">
+                            <span id="system-status-indicator" class="status-indicator status-healthy"></span>
+                            <span id="system-status-text">System Healthy</span>
+                            <div class="websocket-status">
+                                <span class="websocket-indicator" id="websocket-indicator"></span>
+                                <span id="websocket-text">Live</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="rooms-container" class="rooms-container">
+                        <!-- Room cards will be dynamically generated here -->
+                    </div>
+                    
+                    <div id="no-rooms" class="no-rooms hidden">
+                        <div class="empty-state">
+                            <span class="icon">🏠</span>
+                            <h3>No Rooms Configured</h3>
+                            <p>Add your first growing room to get started with irrigation control.</p>
+                            <button id="add-room-btn" class="btn btn-primary">
+                                <span class="icon">➕</span>
+                                Add Room
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events View -->
+                <div id="events-view" class="view">
+                    <div class="view-header">
+                        <h2>Irrigation Events</h2>
+                        <button id="add-event-btn" class="btn btn-primary">
+                            <span class="icon">➕</span>
+                            Add Event
+                        </button>
+                    </div>
+                    <div id="events-container" class="events-container">
+                        <!-- Events will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <!-- History View -->
+                <div id="history-view" class="view">
+                    <div class="view-header">
+                        <h2>Irrigation History</h2>
+                        <div class="history-filters">
+                            <select id="history-room-filter">
+                                <option value="">All Rooms</option>
+                            </select>
+                            <select id="history-days-filter">
+                                <option value="1">Last 24 Hours</option>
+                                <option value="7" selected>Last 7 Days</option>
+                                <option value="30">Last 30 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="history-container" class="history-container">
+                        <!-- History will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <!-- Settings View -->
+                <div id="settings-view" class="view">
+                    <div class="view-header">
+                        <h2>System Settings</h2>
+                        <button id="save-settings-btn" class="btn btn-primary">
+                            <span class="icon">💾</span>
+                            Save Settings
+                        </button>
+                    </div>
+                    <div id="settings-container" class="settings-container">
+                        <!-- Settings will be dynamically generated here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Modals -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 id="modal-title">Modal Title</h3>
+                    <button id="modal-close" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Modal content will be dynamically generated -->
+                </div>
+                <div class="modal-footer" id="modal-footer">
+                    <!-- Modal buttons will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container">
+            <!-- Toast notifications will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script src="irrigation-panel.js"></script>
+</body>
+</html>

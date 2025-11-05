@@ -1,0 +1,281 @@
+start_manual_run:
+  name: Start Manual Run
+  description: Start a manual irrigation run for a specific room
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room to irrigate
+      required: true
+      selector:
+        text:
+    duration:
+      name: Duration
+      description: Duration of the manual run in seconds (1-3600)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+
+stop_irrigation:
+  name: Stop Irrigation
+  description: Stop any active irrigation for a specific room
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room to stop irrigation for
+      required: true
+      selector:
+        text:
+
+enable_event:
+  name: Enable Event
+  description: Enable or disable an irrigation event for a room
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room
+      required: true
+      selector:
+        text:
+    event_type:
+      name: Event Type
+      description: The type of event (P1 or P2)
+      required: true
+      selector:
+        select:
+          options:
+            - "P1"
+            - "P2"
+    enabled:
+      name: Enabled
+      description: Whether to enable or disable the event
+      required: true
+      selector:
+        boolean:
+
+disable_event:
+  name: Disable Event
+  description: Disable an irrigation event for a room (convenience service)
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room
+      required: true
+      selector:
+        text:
+    event_type:
+      name: Event Type
+      description: The type of event (P1 or P2)
+      required: true
+      selector:
+        select:
+          options:
+            - "P1"
+            - "P2"
+
+add_shot:
+  name: Add Shot
+  description: Add a new shot to an irrigation event
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room
+      required: true
+      selector:
+        text:
+    event_type:
+      name: Event Type
+      description: The type of event (P1 or P2)
+      required: true
+      selector:
+        select:
+          options:
+            - "P1"
+            - "P2"
+    duration:
+      name: Duration
+      description: Duration of the shot in seconds (1-3600)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+    interval_after:
+      name: Interval After
+      description: Interval after this shot before the next one in seconds (0-3600)
+      required: false
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 3600
+          unit_of_measurement: seconds
+    position:
+      name: Position
+      description: Position to insert the shot (0-based index, omit to add at end)
+      required: false
+      selector:
+        number:
+          min: 0
+
+remove_shot:
+  name: Remove Shot
+  description: Remove a shot from an irrigation event
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room
+      required: true
+      selector:
+        text:
+    event_type:
+      name: Event Type
+      description: The type of event (P1 or P2)
+      required: true
+      selector:
+        select:
+          options:
+            - "P1"
+            - "P2"
+    shot_index:
+      name: Shot Index
+      description: Index of the shot to remove (0-based)
+      required: true
+      selector:
+        number:
+          min: 0
+
+update_shot:
+  name: Update Shot
+  description: Update properties of an existing shot
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room
+      required: true
+      selector:
+        text:
+    event_type:
+      name: Event Type
+      description: The type of event (P1 or P2)
+      required: true
+      selector:
+        select:
+          options:
+            - "P1"
+            - "P2"
+    shot_index:
+      name: Shot Index
+      description: Index of the shot to update (0-based)
+      required: true
+      selector:
+        number:
+          min: 0
+    duration:
+      name: Duration
+      description: New duration of the shot in seconds (1-3600)
+      required: false
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+    interval_after:
+      name: Interval After
+      description: New interval after this shot in seconds (0-3600)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 3600
+          unit_of_measurement: seconds
+
+emergency_stop:
+  name: Emergency Stop
+  description: Emergency stop all irrigation activities for a specific room
+  fields:
+    room_id:
+      name: Room ID
+      description: The ID of the room to emergency stop
+      required: true
+      selector:
+        text:
+
+emergency_stop_all:
+  name: Emergency Stop All
+  description: Emergency stop all irrigation activities for all rooms
+
+update_settings:
+  name: Update Settings
+  description: Update system settings for the irrigation addon
+  fields:
+    settings:
+      name: Settings
+      description: Dictionary of settings to update
+      required: true
+      selector:
+        object:
+
+get_data:
+  name: Get Data
+  description: Get current irrigation system data (rooms, sensors, settings)
+
+create_backup:
+  name: Create Backup
+  description: Create a backup of all irrigation configuration and data
+
+restore_backup:
+  name: Restore Backup
+  description: Restore irrigation configuration from a backup
+  fields:
+    backup_data:
+      name: Backup Data
+      description: The backup data to restore
+      required: true
+      selector:
+        object:
+
+export_diagnostics:
+  name: Export Diagnostics
+  description: Export comprehensive diagnostic information to a file
+  fields:
+    include_room_diagnostics:
+      name: Include Room Diagnostics
+      description: Include detailed diagnostics for each room
+      required: false
+      default: true
+      selector:
+        boolean:
+    include_performance_metrics:
+      name: Include Performance Metrics
+      description: Include system performance metrics
+      required: false
+      default: true
+      selector:
+        boolean:
+    include_error_history:
+      name: Include Error History
+      description: Include recent error history
+      required: false
+      default: true
+      selector:
+        boolean:
+
+get_error_statistics:
+  name: Get Error Statistics
+  description: Get current error statistics and rates
+
+clear_error_history:
+  name: Clear Error History
+  description: Clear the error history and reset error counters
+
+get_performance_metrics:
+  name: Get Performance Metrics
+  description: Get detailed performance metrics including success rates and system health
+
+reset_performance_metrics:
+  name: Reset Performance Metrics
+  description: Reset all performance metrics and counters

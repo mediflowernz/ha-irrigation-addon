@@ -1,0 +1,1 @@
+"""Tests for the Irrigation Addon integration."""

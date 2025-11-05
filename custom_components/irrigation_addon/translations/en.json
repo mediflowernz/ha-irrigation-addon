@@ -1,0 +1,129 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Irrigation Addon Setup",
+        "description": "Set up your irrigation system for Home Assistant.",
+        "data": {
+          "name": "Integration Name"
+        }
+      },
+      "settings": {
+        "title": "System Settings",
+        "description": "Configure default settings for {name}.",
+        "data": {
+          "pump_zone_delay": "Pump to Zone Delay (seconds)",
+          "sensor_update_interval": "Sensor Update Interval (seconds)",
+          "default_manual_duration": "Default Manual Run Duration (seconds)",
+          "fail_safe_enabled": "Enable Fail-Safe Mechanisms"
+        },
+        "data_description": {
+          "pump_zone_delay": "Time to wait after starting pump before activating zones",
+          "sensor_update_interval": "How often to update sensor readings",
+          "default_manual_duration": "Default duration for manual irrigation runs",
+          "fail_safe_enabled": "Enable safety checks to prevent over-watering and conflicts"
+        }
+      },
+      "confirm": {
+        "title": "Confirm Setup",
+        "description": "Please confirm your irrigation system configuration:\n\nName: {name}\nPump to Zone Delay: {pump_zone_delay} seconds\nSensor Update Interval: {sensor_update_interval} seconds\nDefault Manual Duration: {default_manual_duration} seconds\nFail-Safe Enabled: {fail_safe_enabled}"
+      },
+      "add_room": {
+        "title": "Add New Room",
+        "description": "Configure a new irrigation room.",
+        "data": {
+          "room_name": "Room Name",
+          "pump_entity": "Pump Entity",
+          "zone_entities": "Zone Entities",
+          "light_entity": "Light Schedule Entity",
+          "soil_rh_sensor": "Soil Relative Humidity Sensor",
+          "temperature_sensor": "Temperature Sensor",
+          "ec_sensor": "Electrical Conductivity Sensor"
+        },
+        "data_description": {
+          "room_name": "A descriptive name for this growing room",
+          "pump_entity": "Home Assistant switch entity that controls the water pump",
+          "zone_entities": "Switch entities that control individual irrigation zones",
+          "light_entity": "Entity that tracks the light schedule for this room",
+          "soil_rh_sensor": "Sensor that measures soil relative humidity",
+          "temperature_sensor": "Sensor that measures room temperature",
+          "ec_sensor": "Sensor that measures electrical conductivity"
+        }
+      },
+      "edit_room": {
+        "title": "Edit Room",
+        "description": "Modify room configuration for {room_name}.",
+        "data": {
+          "room_name": "Room Name",
+          "pump_entity": "Pump Entity",
+          "zone_entities": "Zone Entities",
+          "light_entity": "Light Schedule Entity",
+          "soil_rh_sensor": "Soil Relative Humidity Sensor",
+          "temperature_sensor": "Temperature Sensor",
+          "ec_sensor": "Electrical Conductivity Sensor"
+        }
+      },
+      "delete_room": {
+        "title": "Delete Room",
+        "description": "Are you sure you want to delete the room '{room_name}'? This action cannot be undone and will remove all associated events and settings.",
+        "data": {
+          "confirm_delete": "Yes, delete this room"
+        }
+      },
+      "rooms": {
+        "title": "Room Management",
+        "description": "Manage your irrigation rooms.",
+        "data": {
+          "action": "Action",
+          "selected_room": "Select Room"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Home Assistant",
+      "invalid_entity": "The selected entity does not exist or is not available",
+      "duplicate_room": "A room with this name already exists",
+      "no_pump_entity": "You must select a pump entity",
+      "invalid_pump_entity": "The selected pump entity is not valid or not available",
+      "invalid_zone_entity": "One or more zone entities are not valid or not available",
+      "invalid_light_entity": "The selected light entity is not valid or not available",
+      "invalid_sensor_entity": "One or more sensor entities are not valid or not available",
+      "room_not_found": "The selected room was not found",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "Irrigation Addon is already configured",
+      "single_instance_allowed": "Only a single configuration of Irrigation Addon is allowed"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Irrigation Addon Options",
+        "description": "Configure options for your irrigation system.",
+        "data": {
+          "manage_rooms": "Manage Rooms",
+          "system_settings": "System Settings"
+        }
+      },
+      "settings": {
+        "title": "System Settings",
+        "description": "Update system-wide settings.",
+        "data": {
+          "pump_zone_delay": "Pump to Zone Delay (seconds)",
+          "sensor_update_interval": "Sensor Update Interval (seconds)",
+          "default_manual_duration": "Default Manual Run Duration (seconds)",
+          "fail_safe_enabled": "Enable Fail-Safe Mechanisms"
+        }
+      },
+      "rooms": {
+        "title": "Room Management",
+        "description": "Add, edit, or delete irrigation rooms.",
+        "data": {
+          "action": "Action",
+          "selected_room": "Select Room"
+        }
+      }
+    }
+  }
+}

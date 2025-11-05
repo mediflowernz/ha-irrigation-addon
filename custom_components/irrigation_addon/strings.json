@@ -1,0 +1,96 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Irrigation Addon Setup",
+        "description": "Set up your irrigation system for Home Assistant.",
+        "data": {
+          "name": "Integration Name"
+        }
+      },
+      "settings": {
+        "title": "System Settings",
+        "description": "Configure default settings for {name}.",
+        "data": {
+          "pump_zone_delay": "Pump to Zone Delay (seconds)",
+          "sensor_update_interval": "Sensor Update Interval (seconds)",
+          "default_manual_duration": "Default Manual Run Duration (seconds)",
+          "fail_safe_enabled": "Enable Fail-Safe Mechanisms"
+        }
+      },
+      "confirm": {
+        "title": "Confirm Setup",
+        "description": "Please confirm your irrigation system configuration."
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Home Assistant",
+      "invalid_entity": "The selected entity does not exist or is not available",
+      "duplicate_room": "A room with this name already exists",
+      "no_pump_entity": "You must select a pump entity",
+      "invalid_pump_entity": "The selected pump entity is not valid or not available",
+      "invalid_zone_entity": "One or more zone entities are not valid or not available",
+      "invalid_light_entity": "The selected light entity is not valid or not available",
+      "invalid_sensor_entity": "One or more sensor entities are not valid or not available",
+      "room_not_found": "The selected room was not found",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "Irrigation Addon is already configured",
+      "single_instance_allowed": "Only a single configuration of Irrigation Addon is allowed"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Irrigation Addon Options"
+      },
+      "settings": {
+        "title": "System Settings",
+        "data": {
+          "pump_zone_delay": "Pump to Zone Delay (seconds)",
+          "sensor_update_interval": "Sensor Update Interval (seconds)",
+          "default_manual_duration": "Default Manual Run Duration (seconds)",
+          "fail_safe_enabled": "Enable Fail-Safe Mechanisms"
+        }
+      },
+      "rooms": {
+        "title": "Room Management",
+        "data": {
+          "action": "Action",
+          "selected_room": "Select Room"
+        }
+      },
+      "add_room": {
+        "title": "Add New Room",
+        "data": {
+          "room_name": "Room Name",
+          "pump_entity": "Pump Entity",
+          "zone_entities": "Zone Entities",
+          "light_entity": "Light Schedule Entity",
+          "soil_rh_sensor": "Soil Relative Humidity Sensor",
+          "temperature_sensor": "Temperature Sensor",
+          "ec_sensor": "Electrical Conductivity Sensor"
+        }
+      },
+      "edit_room": {
+        "title": "Edit Room",
+        "data": {
+          "room_name": "Room Name",
+          "pump_entity": "Pump Entity",
+          "zone_entities": "Zone Entities",
+          "light_entity": "Light Schedule Entity",
+          "soil_rh_sensor": "Soil Relative Humidity Sensor",
+          "temperature_sensor": "Temperature Sensor",
+          "ec_sensor": "Electrical Conductivity Sensor"
+        }
+      },
+      "delete_room": {
+        "title": "Delete Room",
+        "data": {
+          "confirm_delete": "Yes, delete this room"
+        }
+      }
+    }
+  }
+}
